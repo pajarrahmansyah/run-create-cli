@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2] - 2025-10-10
+
+### Fixed
+- CLI version now reads dynamically from package.json instead of hardcoded value
+- Ensures version stays in sync across npm publishes
+
+### Changed
+- Import formatting standardization
+
+## [0.1.1] - 2025-10-10
+
+### Fixed
+- Normalized repository URL format in package.json
+
 ## [0.1.0] - 2025-10-10
 
 ### Added
@@ -25,4 +39,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Dependencies
 - commander@^12.1.0 for CLI framework
 
+[0.1.2]: https://github.com/pajarrahmansyah/run-create-cli/releases/tag/v0.1.2
+[0.1.1]: https://github.com/pajarrahmansyah/run-create-cli/releases/tag/v0.1.1
 [0.1.0]: https://github.com/pajarrahmansyah/run-create-cli/releases/tag/v0.1.0

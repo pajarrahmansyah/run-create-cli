@@ -14,7 +14,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/pajarrahmansyah/run-create-cli.git"
+        "url": "git+https://github.com/pajarrahmansyah/run-create-cli.git"
     },
     "bugs": {
         "url": "https://github.com/pajarrahmansyah/run-create-cli/issues"

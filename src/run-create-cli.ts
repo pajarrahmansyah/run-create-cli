@@ -1,12 +1,22 @@
 #!/usr/bin/env node
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import { Command } from 'commander';
 
 import { createFeatCommand } from '@/cli/feat.js';
 import { createGenCommand } from '@/cli/gen.js';
 
+// Read version from package.json
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const packageJson = JSON.parse(
+	readFileSync(join(__dirname, '../package.json'), 'utf-8')
+);
+
 const program = new Command();
 
-program.name('run-create-cli').description('Scaffold files from simple blueprints').version('0.1.0');
+program.name('run-create-cli').description('Scaffold files from simple blueprints').version(packageJson.version);
 
 // Register commands
 program.addCommand(createFeatCommand());

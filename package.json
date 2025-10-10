@@ -1,6 +1,6 @@
 {
     "name": "run-create-cli",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "A useful CLI tool for scaffolding features and generating code blueprints",
     "author": "Pajar Rahmansyah <hi@pajar.my.id>",
     "license": "MIT",

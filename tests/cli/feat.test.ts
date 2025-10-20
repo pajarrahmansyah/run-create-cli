@@ -1,25 +1,12 @@
-import {
-  readFile,
-  rm,
-} from 'node:fs/promises';
+import { readFile, rm } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { createFeatCommand } from '@/cli/feat';
 import { featTemplate } from '@/templates/feat';
 import { toCases } from '@/utils/case';
-import {
-  exists,
-  writeText,
-} from '@/utils/fs';
+import { exists, writeText } from '@/utils/fs';
 
 const testDir = resolve('./test-feat-integration');
 
@@ -222,12 +209,13 @@ describe('createFeatCommand', () => {
 
     // Check that options are registered
     const options = command.options;
-    expect(options).toHaveLength(3); // dir, force, no-test
+    expect(options).toHaveLength(4); // dir, force, no-test, test
 
     const optionNames = options.map(opt => opt.long);
     expect(optionNames).toContain('--dir');
     expect(optionNames).toContain('--force');
     expect(optionNames).toContain('--no-test');
+    expect(optionNames).toContain('--test');
   });
 
   it('should execute action function and create files', async () => {

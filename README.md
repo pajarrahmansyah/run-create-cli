@@ -76,8 +76,9 @@ Scaffolds a complete feature with:
 - Test file (unless `--no-test` is specified)
 
 **Options:**
-- `-d, --dir <directory>` - Target directory (default: `src`)
+- `-d, --dir <directory>` - Target directory (default: from config or `src`)
 - `--no-test` - Skip generating test files
+- `--test` - Generate test files (overrides config)
 - `-f, --force` - Overwrite existing files
 
 ### `rcc gen <blueprint> <name> [options]` (or `run-create-cli gen`)
@@ -97,7 +98,46 @@ Generates code from a blueprint file (JS/JSON module).
 - 📁 **Smart file organization** - Follows best practices for file structure
 - 🧪 **Test-ready** - Includes test files by default
 - 🎯 **Type-safe** - Full TypeScript support
+## Features
+
+- 🚀 **Fast scaffolding** - Generate complete features in seconds
+- 📁 **Smart file organization** - Follows best practices for file structure
+- 🧪 **Test-ready** - Includes test files by default
+- 🎯 **Type-safe** - Full TypeScript support
+- ⚙️ **Configurable** - Project-level configuration support
 - ⚡ **Lightweight** - Minimal dependencies
+
+## Configuration
+
+Create a `rcc.config.js` in your project root to customize defaults:
+
+```javascript
+// rcc.config.js
+export default {
+  // Base directory for generated files (default: 'src')
+  baseDir: 'src',
+  
+  // Skip test files by default (default: false)
+  skipTests: false,
+};
+```
+
+**Configuration priority:**
+1. CLI flags (highest priority)
+2. `rcc.config.js` in project root
+3. Built-in defaults (lowest priority)
+
+**Example:**
+```bash
+# Uses baseDir from config (e.g., 'app')
+rcc feat user-profile
+
+# Overrides config with CLI flag
+rcc feat user-profile -d lib
+
+# Config has skipTests: true, but --test flag overrides it
+rcc feat user-profile --test
+```
 
 ## Development
 

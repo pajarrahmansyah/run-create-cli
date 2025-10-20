@@ -4,6 +4,7 @@ import { Command } from 'commander';
 
 import { featTemplate } from '@/templates/feat.js';
 import { toCases } from '@/utils/case.js';
+import { getConfigValue, loadConfig } from '@/utils/config.js';
 import { writeText } from '@/utils/fs.js';
 
 export function createFeatCommand() {
@@ -12,22 +13,41 @@ export function createFeatCommand() {
   return command
     .command('feat')
     .argument('name', 'Feature name (e.g., "user auth")')
-    .option('-d, --dir <dir>', 'Base directory', 'src')
+    .option('-d, --dir <dir>', 'Base directory (overrides config)')
     .option('-f, --force', 'Overwrite existing files', false)
     .option('--no-test', 'Skip generating test files')
+    .option('--test', 'Generate test files (overrides config skipTests)')
     .action(async (name, opts) => {
-      const cases = toCases(name);
-      const files = featTemplate(opts.dir);
+      // Load config from project
+      const config = await loadConfig();
 
-      // Filter out test files if --no-test option is provided
-      const filteredFiles =
-        opts.test === false
-          ? files.filter(spec => {
-              const filePath = spec.path(cases);
-              const isTestFile = filePath.includes('.test.');
-              return !isTestFile;
-            })
-          : files;
+      // CLI option > config > default
+      const baseDir = opts.dir || getConfigValue(config, 'baseDir', 'src');
+
+      // Determine skipTests with priority: CLI --test > CLI --no-test > config > default
+      let skipTests: boolean;
+      if (opts.test === true) {
+        // Explicit --test flag
+        skipTests = false;
+      } else if (opts.test === false) {
+        // Explicit --no-test flag
+        skipTests = true;
+      } else {
+        // Fall back to config or default
+        skipTests = getConfigValue(config, 'skipTests', false);
+      }
+
+      const cases = toCases(name);
+      const files = featTemplate(baseDir);
+
+      // Filter out test files if --no-test option or config skipTests is true
+      const filteredFiles = skipTests
+        ? files.filter(spec => {
+            const filePath = spec.path(cases);
+            const isTestFile = filePath.includes('.test.');
+            return !isTestFile;
+          })
+        : files;
 
       const results: { path: string; ok: boolean; error?: string }[] = [];
 

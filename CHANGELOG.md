@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2025-10-20
+
+### Added
+- **Configuration file support**: Optional `rcc.config.js` in project root
+  - `baseDir` option to customize output directory (default: `src`)
+  - `skipTests` option to skip test files by default (default: `false`)
+  - Config file is completely optional - works out-of-the-box without it
+- `--test` flag to explicitly generate test files (overrides config `skipTests`)
+- Config loader utility with graceful fallback to defaults
+- **Examples folder** with ready-to-use templates:
+  - `rcc.config.example.ts` - Configuration file example
+  - `api-service.blueprint.js` - API service class generator
+  - `react-component.blueprint.js` - React component generator
+  - `examples/README.md` - Complete examples documentation
+
+### Changed
+- `feat` command now respects project configuration with priority: CLI flags > Config file > Defaults
+- Updated `--dir` option documentation to reflect config file support
+- Moved example files to dedicated `examples/` folder for better organization
+
+### Documentation
+- Added configuration section to README
+- Included examples folder in npm package with complete documentation
+
 ## [0.1.2] - 2025-10-10
 
 ### Fixed
@@ -39,6 +63,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Dependencies
 - commander@^12.1.0 for CLI framework
 
+[0.2.0]: https://github.com/pajarrahmansyah/run-create-cli/releases/tag/v0.2.0
 [0.1.2]: https://github.com/pajarrahmansyah/run-create-cli/releases/tag/v0.1.2
 [0.1.1]: https://github.com/pajarrahmansyah/run-create-cli/releases/tag/v0.1.1
 [0.1.0]: https://github.com/pajarrahmansyah/run-create-cli/releases/tag/v0.1.0

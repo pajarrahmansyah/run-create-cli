@@ -24,7 +24,8 @@
     "files": [
         "dist/",
         "README.md",
-        "LICENSE"
+        "LICENSE",
+        "examples/"
     ],
     "bin": {
         "run-create-cli": "dist/run-create-cli.js",

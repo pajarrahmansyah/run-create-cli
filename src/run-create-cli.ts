@@ -1,10 +1,7 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import { readFileSync } from 'fs';
-import {
-  dirname,
-  join,
-} from 'path';
+import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
 import { createFeatCommand } from '@/cli/feat.js';
@@ -17,7 +14,10 @@ const packageJson = JSON.parse(readFileSync(join(__dirname, '../package.json'), 
 
 const program = new Command();
 
-program.name('run-create-cli').description('Scaffold files from simple blueprints').version(packageJson.version);
+program
+  .name('run-create-cli')
+  .description('Scaffold files from simple blueprints')
+  .version(`${packageJson.name} v${packageJson.version}`, '-v, --version');
 
 // Register commands
 program.addCommand(createFeatCommand());

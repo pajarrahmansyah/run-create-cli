@@ -1,4 +1,4 @@
-# run-create-cli
+# @pajarrahmansyah/run-create-cli
 
 A useful CLI tool for scaffolding features and generating code blueprints.
 
@@ -6,10 +6,10 @@ A useful CLI tool for scaffolding features and generating code blueprints.
 
 ```bash
 # Global installation (recommended)
-npm install -g run-create-cli
+npm install -g @pajarrahmansyah/run-create-cli
 
 # Or use directly with npx (no installation needed)
-npx run-create-cli feat my-feature
+npx @pajarrahmansyah/run-create-cli feat my-feature
 ```
 
 > **Note:** This is a CLI tool meant to be installed globally. Global installation allows you to use `rcc` command anywhere in your terminal.
@@ -17,6 +17,7 @@ npx run-create-cli feat my-feature
 ## CLI Commands
 
 This package provides two CLI commands:
+
 - `run-create-cli` - Full command name
 - `rcc` - Short alias for convenience
 
@@ -70,12 +71,14 @@ rcc gen ./blueprints/api.js AuthService --force
 ### `rcc feat <name> [options]` (or `run-create-cli feat`)
 
 Scaffolds a complete feature with:
+
 - Main implementation file
 - Type definitions
 - Index file for exports
 - Test file (unless `--no-test` is specified)
 
 **Options:**
+
 - `-d, --dir <directory>` - Target directory (default: from config or `src`)
 - `--no-test` - Skip generating test files
 - `--test` - Generate test files (overrides config)
@@ -86,10 +89,12 @@ Scaffolds a complete feature with:
 Generates code from a blueprint file (JS/JSON module).
 
 **Arguments:**
+
 - `<blueprint>` - Path to blueprint file (e.g., `./blueprints/user.js`)
 - `<name>` - Entity name for generation
 
 **Options:**
+
 - `-f, --force` - Overwrite existing files
 
 ## Features
@@ -98,6 +103,7 @@ Generates code from a blueprint file (JS/JSON module).
 - 📁 **Smart file organization** - Follows best practices for file structure
 - 🧪 **Test-ready** - Includes test files by default
 - 🎯 **Type-safe** - Full TypeScript support
+
 ## Features
 
 - 🚀 **Fast scaffolding** - Generate complete features in seconds
@@ -115,19 +121,21 @@ Create a `rcc.config.js` in your project root to customize defaults:
 // rcc.config.js
 export default {
   // Base directory for generated files (default: 'src')
-  baseDir: 'src',
-  
+  baseDir: "src",
+
   // Skip test files by default (default: false)
   skipTests: false,
 };
 ```
 
 **Configuration priority:**
+
 1. CLI flags (highest priority)
 2. `rcc.config.js` in project root
 3. Built-in defaults (lowest priority)
 
 **Example:**
+
 ```bash
 # Uses baseDir from config (e.g., 'app')
 rcc feat user-profile
